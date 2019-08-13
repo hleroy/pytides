@@ -174,6 +174,13 @@ _M12 = CompoundConstituent(name = 'M12', members = [(_M2, 6)])
 
 
 noaa = [
+	_M2, _S2, _N2, _K1, _M4, _O1, _M6, _MK3, _S4, _MN4, _nu2, _S6, _mu2,
+	_2N2, _OO1, _lambda2, _S1, _M1, _J1, _Mm, _Ssa, _Sa, _MSF, _Mf,
+	_rho1, _Q1, _T2, _R2, _2Q1, _P1, _2SM2, _M3, _L2, _2MK3, _K2,
+	_M8, _MS4
+]
+
+noaa_titoconte = [
 	_M2, _S2, _N2, _K1, _M4, _O1, _M6, _MK3, _S4, _MN4, _nu2, _S6, _mu2, _2N2,
 	_OO1, _lambda2, _S1, _M1, _J1, _Mm, _Ssa, _Sa, _MSF, _Mf,	_rho1, _Q1, _T2,
 	_R2, _2Q1, _P1, _2SM2, _M3, _L2, _2MK3, _K2 ,_M8, _MS4, _MO3, _SN4, _MNS2,
@@ -238,14 +245,14 @@ def get_constituent_by_name(constituent_name):
 	cn = constituent_name.upper()
 	if cn in _constit_mapping.keys():
 		return _constit_mapping[cn]
-	
+
 	## Not found, raise error
 	raise ValueError("No constituent found for name '{}'".format(constituent_name))
-	
+
 
 def get_constituent_names():
 	return list(_constit_mapping.keys())
-	
+
 
 #
 #  u'RO1', u'SIGMA1', u'PI1',
