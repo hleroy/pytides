@@ -18,7 +18,8 @@ class TestPytides(unittest.TestCase):
 
     def test_kings_point(self):
         # Check that Pytides prediction in King's Point for 0000 and 0600 GMT
-        # on January 1 2013 are [-0.08631255 2.20748666].
+        # on January 1 2013 are [-0.086250887498591222 2.207534179351927].
+        # Results have been updated to take into account commit #7d5e3c7
 
         # These are the NOAA constituents, in the order presented on their website.
         constituents = [c for c in cons.noaa if c != cons._Z0]
@@ -49,8 +50,8 @@ class TestPytides(unittest.TestCase):
 
         heights = tide.at([datetime(2013, 1, 1, 0, 0, 0), datetime(2013, 1, 1, 6, 0, 0)])
 
-        self.assertEqual(heights[0], -0.0862410574593937)  # -0.08631255 on wiki page ???
-        self.assertEqual(heights[1], 2.2075246587576456)  # 2.20748666 on wiki page ???
+        self.assertEqual(heights[0], -0.086250887498591222)
+        self.assertEqual(heights[1], 2.207534179351927)
 
 
 if __name__ == '__main__':
