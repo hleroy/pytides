@@ -115,6 +115,15 @@ _P1 = BaseConstituent(name='P1', xdo='A AXZ ZZA')
 _S1 = BaseConstituent(name='S1', xdo='A AYZ ZZZ')
 _OO1 = BaseConstituent(name='OO1', xdo='A CZZ ZZY', u=nc.u_OO1, f=nc.f_OO1)
 
+# Added for PREVIMER. xdo, u and f taken from TWCWG Constituent list 8th May 2017
+_sigma1 = BaseConstituent(name='sigma1', xdo='A WBZ ZZY', u=nc.u_O1, f=nc.f_O1)
+_chi1 = BaseConstituent(name='chi1', xdo='A ZBY ZZA', u=nc.u_J1, f=nc.f_J1)
+_phi1 = BaseConstituent(name='phi1', xdo='A ABZ ZZA', u=nc.u_J1, f=nc.f_J1)
+_psi1 = BaseConstituent(name='psi1', xdo='A AAZ ZYA')
+_pi1 = BaseConstituent(name='pi1', xdo='A AWZ ZAY')
+_theta1 = BaseConstituent(name='theta1', xdo='A BXA ZZA', u=nc.u_J1, f=nc.f_J1)
+_MP1 = BaseConstituent(name='MP1', xdo='A YBZ ZZA', u=nc.u_M2, f=nc.f_M2)
+
 # Semi-Diurnals
 _2N2 = BaseConstituent(name='2N2', xdo='B XZB ZZZ', u=nc.u_M2, f=nc.f_M2)
 _N2 = BaseConstituent(name='N2', xdo='B YZA ZZZ', u=nc.u_M2, f=nc.f_M2)
@@ -127,6 +136,9 @@ _T2 = BaseConstituent(name='T2', xdo='B BWZ ZAZ')
 _S2 = BaseConstituent(name='S2', xdo='B BXZ ZZZ')
 _R2 = BaseConstituent(name='R2', xdo='B BYZ ZYB')
 _K2 = BaseConstituent(name='K2', xdo='B BZZ ZZZ', u=nc.u_K2, f=nc.f_K2)
+
+# Added for PREVIMER
+_eps2 = BaseConstituent(name='eps2', xdo='B WBA ZZZ', u=nc.u_M2, f=nc.f_M2)
 
 
 # Third-Diurnals
@@ -150,12 +162,20 @@ _MSTM = CompoundConstituent(name='MSTM', members=[(_Mf, 2), (_Mm, -1)])
 _2Q1 = CompoundConstituent(name='2Q1', members=[(_N2, 1), (_J1, -1)])
 _rho1 = CompoundConstituent(name='rho1', members=[(_nu2, 1), (_K1, -1)])
 
+# Added for PREVIMER
+# KQ1=K2-Q1
+_KQ1 = CompoundConstituent(name='KQ1', members=[(_K2, 1), (_Q1, -1)])
+
 # Semi-Diurnal
 _mu2 = CompoundConstituent(name='mu2', members=[(_M2, 2), (_S2, -1)])  # 2MS2
 _2SM2 = CompoundConstituent(name='2SM2', members=[(_S2, 2), (_M2, -1)])
 _OP2 = CompoundConstituent(name='OP2', members=[(_P1, 1), (_O1, 1)])
 _MNS2 = CompoundConstituent(
     name='MNS2', members=[(_S2, -1), (_M2, 1), (_N2, 1)])
+
+# Added for PREVIMER
+# KJ2=K1-J1
+_KJ2 = CompoundConstituent(name='KJ2', members=[(_K1, 1), (_J1, -1)])
 
 # Third-Diurnal
 _2MK3 = CompoundConstituent(name='2MK3', members=[(_M2, 1), (_O1, 1)])
@@ -189,6 +209,14 @@ _M10 = CompoundConstituent(name='M10', members=[(_M2, 5)])
 _M12 = CompoundConstituent(name='M12', members=[(_M2, 6)])
 
 
+all = [
+    _M2, _S2, _N2, _K1, _M4, _O1, _M6, _MK3, _S4, _MN4, _nu2, _S6, _mu2, _2N2,
+    _OO1, _lambda2, _S1, _M1, _J1, _Mm, _Ssa, _Sa, _MSF, _Mf, _rho1, _Q1, _T2,
+    _R2, _2Q1, _P1, _2SM2, _M3, _L2, _2MK3, _K2, _M8, _MS4, _MO3, _SN4, _MNS2,
+    _N4, _L4, _M10, _M12, _S8, _MK4, _OP2, _2MSN4, _MSTM, _sigma1, _chi1, _phi1,
+    _psi1, _pi1, _theta1, _MP1, _eps2, _KQ1, _KJ2
+]
+
 noaa = [
     _M2, _S2, _N2, _K1, _M4, _O1, _M6, _MK3, _S4, _MN4, _nu2, _S6, _mu2,
     _2N2, _OO1, _lambda2, _S1, _M1, _J1, _Mm, _Ssa, _Sa, _MSF, _Mf,
@@ -196,12 +224,14 @@ noaa = [
     _M8, _MS4
 ]
 
-noaa_titoconte = [
-    _M2, _S2, _N2, _K1, _M4, _O1, _M6, _MK3, _S4, _MN4, _nu2, _S6, _mu2, _2N2,
-    _OO1, _lambda2, _S1, _M1, _J1, _Mm, _Ssa, _Sa, _MSF, _Mf, _rho1, _Q1, _T2,
-    _R2, _2Q1, _P1, _2SM2, _M3, _L2, _2MK3, _K2, _M8, _MS4, _MO3, _SN4, _MNS2,
-    _N4, _L4, _M10, _M12, _S8, _MK4, _OP2, _2MSN4, _MSTM,
+previmer = [
+    _M2, _S2, _N2, _K1, _M4, _O1, _M6, _MN4, _2N2, _OO1, _lambda2,
+    _M1, _J1, _Mm, _Mf, _rho1, _Q1, _T2, _R2, _2Q1, _P1, _L2, _K2, _MS4, _MK4,
+    _sigma1, _nu2, _Mm, _chi1, _phi1, _eps2, _psi1, _pi1, _theta1, _MP1,
+    _KJ2, _KQ1
 ]
+
+tmgpm = [_Sa, _Q1, _O1, _K1, _N2, _M2, _S2, _MN4, _M4, _MS4]
 
 _constit_mapping = {
     "Z0": _Z0,
@@ -253,7 +283,17 @@ _constit_mapping = {
     "M8": _M8,
     "S8": _S8,
     "M10": _M10,
-    "M12": _M12
+    "M12": _M12,
+    "SIGMA1": _sigma1,
+    "CHI1": _chi1,
+    "PHI1": _phi1,
+    "PSI1": _psi1,
+    "PI1": _pi1,
+    "THETA1": _theta1,
+    "MP1": _MP1,
+    "EPS2": _eps2,
+    "KQ1": _KQ1,
+    "KJ2": _KJ2,
 }
 
 
@@ -270,19 +310,3 @@ def get_constituent_by_name(constituent_name):
 
 def get_constituent_names():
     return list(_constit_mapping.keys())
-
-
-#
-#  u'RO1', u'SIGMA1', u'PI1',
-# u'FI1', u'CHI1', u'THETA1', u'SO1', u'MP1', u'PSI1',
-# , u'KJ2', u'MSN2', u'MKS2', u'OQ2',
-# u'SK3', u'SO3', u'SK4', u'2MS6', u'2MN6',
-# u'2SM6', u'MSN6', u'2MK6', u'MSK6', u'SK2', u'S3',
-#  u'MSM', u'MTM', u'MSQM', u'M(SK)2', u'M(KS)2',
-# u'3MS8', u'2(MS)8', u'2MSN8', u'2MNS4', u'3MK4', u'3MS4', u'2MSK4',
-# u'2MKS4', u'3MN4', u'2SMK4', u'2MSN4', u'MNK6', u'MSNK8', u'2SNM4',
-# u'SP3', u'KQ1', u'MQ3', u'K3', u'3SM4', u'2SN2', u'2SN6',
-# , u'NO1', u'2MS2', u'ALP1', u'EPS2', u'ETA2', u'UPS1',
-# u'2MN2', u'3MK7', u'2MK5', u'2SK5', u'TAU1', u'H1', u'H2', u'4MS6',
-# u'MQM', u'SIG1', u'M11', u'KI1', u'PHI1', u'TTA1', u'E2',
-# u'2MK2', u'MSK2', u'LA2', u'A0', u'3MN8', u'2MSK8'
